@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShinyVolcano</title>
+  <meta charset="utf-8">
+  <meta name="description" content="ShinyVolcano">
+  <meta name="author" content="Simabo">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/default.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/slidify.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>ShinyVolcano</h1>
+    <h2>Interactive presentation</h2>
+    <p>Simabo<br/>Enthousiast tinkerer</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Motivations</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create a functional ShinyApp with interactive features</li>
+<li>Keep the package simple, as requested</li>
+<li>Avoid any graphical tasks on the server end (everything on the client)</li>
+<li>Be original, going beyond statistical bargraphs</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Principles</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The app (<a href="http://simabo.shinyapps.io/ShinyVolcano">here, by the way</a>) loads one of the default R datasets, &quot;Volcano&quot;. This dataset of Mount Eden (&#39;Maunga Whau&#39;, in Auckland, New Zealand) is used to reproduce the topology.</p>
+
+<p>We use the <a href="http://stat.ethz.ch/R-manual/R-patched/library/graphics/html/persp.html">persp</a> function to create a mesh from the matrix of points:</p>
+
+<div style='float:left;width:48%;'>
+	<br />
+	<br />
+	<br />
+  <pre><code>z &lt;- volcano
+x &lt;- (1:nrow(z))
+y &lt;- (1:ncol(z))
+persp(x, y, z, theta = 130, phi = 30)
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Limitations</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Calculations and rendering being done in software mode (i.e., not using any hardware-acceleration technique), there is a serious lag of 1-2 seconds between user interaction and screen update.</p>
+
+<p>This shouldn&#39;t be a problem as the exercise was about the interaction itself and not the end result.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Improvements</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Here is a list of improvements that any interested reader can try at home:</p>
+
+<ul>
+<li>Switch from <code>persp</code> to <code>persp3d</code>, using the RGL Package in Shiny (see next slide)</li>
+<li>Implement zooming</li>
+<li>Implement a color picker to change the shading</li>
+<li>Allow direct topology download (see the Digital Elevation Models accessible after registration on <a href="http://earthexplorer.usgs.gov/">EarthExplorer</a>)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Where to go from there?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>If you want to experiment further with topological data in R, take a look at:</p>
+
+<ul>
+<li><a href="http://cran.r-project.org/web/packages/plot3D/vignettes/volcano.pdf">this PDF</a> listing various ways to have fun with R and the Volcano dataset</li>
+<li><a href="https://github.com/trestletech/shinyRGL">Shiny-RGL</a> which is a Shiny wrapper for the <a href="https://r-forge.r-project.org/projects/rgl/">RGL package</a>. It allows you to use RGL, an openGL package for R, in ShinyApps. Using it would allow you to directly move the volcano with the mouse, instead of relying on sliders to move the point of view.</li>
+<li><a href="http://geotheory.co.uk/blog/2014/02/07/visualising-topography/">GeoTheory</a> also has some nice experiments with maps and R.</li>
+</ul>
+
+<p><em>Thanks for reading, have fun!</em></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Motivations'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Principles'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Limitations'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Improvements'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Where to go from there?'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
